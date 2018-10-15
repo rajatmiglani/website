@@ -1,25 +1,14 @@
+{% extends 'music/base.html' %}
 
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.6-dist/css/bootstrap.min.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" >
-<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="{% url 'music:index' %}">Viber</a>
-		</div>
-	</div>
-</nav>
-
-{% if all_albums %}
-	<h3>here are all my albums:</h3>
-	<ul>
-		{% for album in all_albums %}
-		<li><a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a></li>
-		{% endfor %}
-</ul>
-{% else %}
-	<h3> you dont have any album</h3>
-{% endif %}	
+{% block body %}
+	{% if all_albums %}
+		<h3>here are all my albums:</h3>
+		<ul>
+			{% for album in all_albums %}
+			<li><a href="{% url 'music:detail' album.id %}">{{album.album_title}}</a></li>
+			{% endfor %}
+	</ul>
+	{% else %}
+		<h3> you dont have any album</h3>
+	{% endif %}	
+{% endblock %}
